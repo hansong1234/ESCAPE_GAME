@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>업다운 게임</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+      max-width: 200px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: crimson;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #feedback {
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>1부터 300 사이의 숫자를 맞혀보세요!</h1>
+  <input type="number" id="guess" placeholder="숫자 입력" />
+  <br />
+  <button onclick="checkGuess()">제출</button>
+  <div id="feedback"></div>
+
+  <script>
+    const answer = 239;
+
+    function checkGuess() {
+      const userGuess = parseInt(document.getElementById("guess").value);
+      const feedback = document.getElementById("feedback");
+
+      if (isNaN(userGuess) || userGuess < 1 || userGuess > 300) {
+        feedback.innerText = "⚠️ 1부터 300 사이의 숫자를 입력하세요!";
+        return;
+      }
+
+      if (userGuess < answer) {
+        feedback.innerText = "📈 업!";
+      } else if (userGuess > answer) {
+        feedback.innerText = "📉 다운!";
+      } else {
+        feedback.innerText = "🎉 정답입니다! 다음 방으로 이동하세요!";
+      }
+    }
+  </script>
+</body>
+</html>
